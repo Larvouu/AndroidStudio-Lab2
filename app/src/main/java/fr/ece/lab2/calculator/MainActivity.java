@@ -3,8 +3,12 @@ package fr.ece.lab2.calculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,30 +19,42 @@ public class MainActivity extends AppCompatActivity {
 
     TextView textCalcul;
     TextView result;
+    LinearLayout linearLayout;
 
+    // param 1 pour le nombre 1, param 2 pour le nombre 2 de l'opération
     int param1 = 0;
     int param2 = 0;
+    //Opérande
     String operation = "undefined";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.version_linear_layout);
 
         textCalcul = (TextView) findViewById(R.id.textCalcul);
         result = (TextView) findViewById(R.id.textResult);
+        linearLayout = (LinearLayout) findViewById(R.id.linearLayoutDigit);
+/*
+        //Déclaration du bouton =
+        final Button equal_btn = new Button(this);
+        equal_btn.setTag(R.string.equal);
+        equal_btn.setText(R.string.equal);
 
-       /* Button equal_btn = new Button(this);
-        equal_btn.setTag("=");
-        equal_btn.setLayout
+        //équivalent à android:onclick="clickHandler"
+        equal_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickHandler(equal_btn);
+            }
+        });
 
-        LinearLayout layout = new LinearLayout(this);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        layout.setLayoutParams(
-                new LayoutParams(
-                        LayoutParams.FILL_PARENT,
-                        LayoutParams.FILL_PARENT)); */
-
+        //Test de set des width et height du bouton =
+        equal_btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        //Ajout au linearLayout
+        linearLayout.addView(equal_btn);
+*/
 
     }
 
@@ -125,19 +141,5 @@ public class MainActivity extends AppCompatActivity {
             param2 = 0;
             operation = "undefined";
         }
-
-        /*//If on appuie sur '=', l'opération est reset + le résultat s'affiche
-        if (b.getTag().toString().equals("=")) {
-            int res = Integer.parseInt(textCalcul.getText().toString()); //Une solution pour caster un textView en int
-            result.setText(String.valueOf(res));
-            textCalcul.setText("");
-        }
-        //If on appuie sur une touche, sa valeur s'écrit dans le text opération
-        else {
-            textCalcul.setText(textCalcul.getText() + b.getTag().toString());
-            Toast.makeText(this, b.getTag().toString(),
-                    Toast.LENGTH_LONG).show();
-        }*/
     }
-
 }
